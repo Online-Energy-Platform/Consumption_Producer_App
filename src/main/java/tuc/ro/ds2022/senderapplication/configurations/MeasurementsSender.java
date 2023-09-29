@@ -26,14 +26,12 @@ public class MeasurementsSender {
     @Autowired
     public MeasurementsSender(AmqpTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
-        this.reader = new MeasurementsCsvReader("src/main/resources/sensor.csv"); // il facem final si ii dam direct
-        // ca parametru numele fisierului nostru.
+        this.reader = new MeasurementsCsvReader("src/main/resources/sensor.csv");
     }
 
     // fixedDelay e delay-ul intre finalul unei executii a metodei send si inceputul urmatoarei executii.
     // initialDelay e delay-ul de la pornirea aplicatiei pana la prima executie a metodei send.
 
-    //@Scheduled(fixedDelay = 600000, initialDelay = 1000) // il setam sa trimita datele odata la 10 minute.
     @Scheduled(fixedDelay = 10000, initialDelay = 1000) // il setam sa trimita datele odata la 10 secunde -> pt testare.
     public void send(){
         double readValue = reader.readMeasurementTupleFromFile();

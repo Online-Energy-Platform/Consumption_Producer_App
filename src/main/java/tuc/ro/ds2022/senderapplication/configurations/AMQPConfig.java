@@ -44,7 +44,7 @@ public class AMQPConfig {
     @Bean
     public MessageConverter jsonMessageConverter() {
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule()); // pentru a putea converti localdatetime in json;
+        objectMapper.registerModule(new JavaTimeModule());
         return new Jackson2JsonMessageConverter(objectMapper);
     }
 
@@ -52,7 +52,7 @@ public class AMQPConfig {
     public CachingConnectionFactory connectionFactory() {
         URI cloudQueueURI = null;
         try {
-            cloudQueueURI = new URI("amqps://hbpduehq:UhIuEtXhhjlm6D68hsyxUJfdPvH1JMsQ@goose.rmq2.cloudamqp.com/hbpduehq");
+            cloudQueueURI = new URI("--your address--");
         }
         catch (URISyntaxException e){
             e.printStackTrace();
